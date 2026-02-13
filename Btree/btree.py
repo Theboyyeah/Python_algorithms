@@ -4,7 +4,10 @@ from node import Node
 from data_key_handler import DataHandler
 import inspect
 
-
+'''
+Decorator _track_operation is used to wrap methods in the Tree class
+to log their actions
+'''
 def _track_operation(func):
     def wrapper(self, *args, **kwargs):
         if self.debug_mode:
@@ -15,6 +18,29 @@ def _track_operation(func):
         return result
     return wrapper
 class Tree:
+    '''
+    Class Tree representing Btree
+    Attributes:
+        root - root of the tree (Frst node tpo be created)
+        t - degree of the tree
+        max_num_of_keys - maximum allowed keys in the Btree
+        debug_mode - if true decorated method log function calls
+    Methods:
+        __init__ - creating a Btree object  with given attributes
+        insert_ - inserts a key into the tree, splitting nodes if necessary
+        insert_non_full - inserts a key into a node that is not full
+        search_key - searches for a key in the tree and returns the key/data ora node and index if called by delete
+        search_key_in_node - helper function to search within a node recursively
+        split - splits a full child node
+        in_order_traversal - returns all keys in the tree in sorted order
+        merge - merges a node with its sibling
+        borrow - rebalances a node/tree,also calls merge
+        borrow_from_right / borrow_from_left - helper functions for borrowing
+        get_predcessor / get_scccesor - find predecessor or successor keys during deletion
+        delete_key - deletes a key from the tree while maintaining B-tree properties
+        print_tree - prints the tree structure in acceptable format
+
+    '''
 
     def __init__(self,t: int):
         self.root = None
@@ -48,14 +74,14 @@ class Tree:
     @_track_operation
     def insert_non_full(self, node: Node, data_and_key: DataHandler):
         i = len(node.keys) - 1
-        # Case: node is leaf
+
         if node.is_leaf_:
             node.keys.append(None)
             while i >= 0 and data_and_key < node.keys[i]:
                 node.keys[i + 1] = node.keys[i]
                 i -= 1
             node.keys[i + 1] = data_and_key
-        # Case inner node
+
         else:
             while i >= 0 and data_and_key < node.keys[i]:
                 i -= 1
@@ -93,8 +119,6 @@ class Tree:
     @_track_operation
     def split(self, parent: Node, index: int):
 
-
-
         t = self.t
         node_to_split = parent.children[index]
 
@@ -105,7 +129,7 @@ class Tree:
 
         left.keys = node_to_split.keys[:t - 1]
         right.keys = node_to_split.keys[t:]
-
+       # Case1: node is not a leaf
         if not node_to_split.is_leaf_:
             left.children = node_to_split.children[:t]
             right.children = node_to_split.children[t:]
@@ -170,6 +194,7 @@ class Tree:
         if parent is self.root and len(parent.keys) == 0:
             self.root = node_to_be_merged
             node_to_be_merged.parent = None
+
         elif parent != self.root and len(parent.keys) < self.t - 1:
             parent_idx = parent.parent.children.index(parent)
             self.borrow(parent.parent, parent_idx)
@@ -245,7 +270,7 @@ class Tree:
 
 
 
-        temp_key = DataHandler(predecessor.ID, predecessor.data)
+       # temp_key = DataHandler(predecessor.ID, predecessor.data)
 
         child.keys.pop()
 
@@ -319,11 +344,10 @@ class Tree:
             else:
 
                 self.merge(node, index, index + 1)
-                # Teraz klucz jest w połączonym dziecku - rekurencyjnie usuń
                 self.delete_key(key)
                 return
 
-        # Sprawdź czy root jest pusty
+
         if len(self.root.keys) == 0 and len(self.root.children) > 0:
             self.root = self.root.children[0]
             self.root.parent = None
