@@ -2,11 +2,15 @@
 
 
 B-tree is a self-balancing tree structure used in database systems 
+
+
 (nowadays B+trees are more common). It is characterized by:
 - Each node can hold a maximum of 2*t - 1(or 2*t +1 depends of how we define degree of a betree) keys and a minimum of t-1(or t) keys.
 - Each internal node can have a maximum of 2*t (or 2*t +1) children and a minimum of t children.
 - Exception: the root can have as few as 1 key and 2 children (or 0 keys if the tree is empty).
 - All leaves are at the same level (this is what keeps it balanced).
+
+DEGREE = t
 
 
 Inserting keys into Btree:
