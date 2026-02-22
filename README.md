@@ -118,7 +118,7 @@ Files in Directory 'Btree'
 
 
 
-How to run programs:
+How to run program:
 
 
 1 Clone repository using:
