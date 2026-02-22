@@ -120,7 +120,10 @@ Files in Directory 'Btree'
 - visualization.py
   - Not finished  yet (work in progres(might finish,might not(not required for B-tree to work)))
 
+To visualize how correct Btree works you can visit:
 
+https://www.cs.usfca.edu/~galles/visualization/BTree.html
+(!!!NOTE!!! this visualizer may use a different definition of degree(which it probalby use))
 
 How to run program:
 
