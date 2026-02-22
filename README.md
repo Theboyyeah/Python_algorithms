@@ -1,4 +1,6 @@
 """===========Btree algorithm==========="""
+
+
 B-tree is a self-balancing tree structure used in database systems 
 (nowadays B+trees are more common). It is characterized by:
 - Each node can hold a maximum of 2*t - 1(or 2*t +1 depends of how we define degree of a betree) keys and a minimum of t-1(or t) keys.
