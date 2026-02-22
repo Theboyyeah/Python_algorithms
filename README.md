@@ -45,7 +45,7 @@ Searching key:
 - If the current node is not a leaf, we recurse into children[i] — the correct
   child is always at the same index i, since i tells us how many keys were
   smaller than ours, meaning our key must be in the subtree after those keys
-Dealting key:
+Deleting key:
 - Firstly we check if the root exists and search for the key using search_key_in_node
 - If the key is not found we return None
 
@@ -80,19 +80,19 @@ name might be misleading since it also deals with merge and successors!!!)- trie
    root, the merged node becomes the new root
 
 Additional funtions used in btree.py:
- - Those function were used to simplyfy the depuging process:
+ - Those function were used to simplify the depuging process:
 --_track_operation - decorator used for debugging. If debug_mode is enabled,
    it prints the name of the called function and who called it (the caller function name).
    Wraps every major operation in the tree. Uses inspect
 --print_tree(node, level) - prints the tree structure to the console level by level(in acceptable way.
    For each node it shows the current level, the keys stored in it and the number
    of children. Recursively prints all children below
---in_order_traversal(node) - traverses the tree in order.Result should be alweys sorted
+--in_order_traversal(node) - traverses the tree in order.Result should be always sorted
 
 
 Note:
  - Evry delete heleper function (method) like merge also needs to
-   tends to balans the tree before deleting the key
+   tends to balans the tree after deleting the key
  - this is only my implementation of Btree propably there are more
    itnresting ways to do Btrees or more correctly
  - It should be working in evry case (t > 1) but who knows :)
@@ -100,7 +100,7 @@ Note:
 
 
 
-Files in Dictionary 'Btree'
+Files in Directory 'Btree'
 
 - data_key_handler.py
   Optional helper file. It connects data with a key (ID) so that we can access the associated data by searching for its key.
@@ -113,7 +113,7 @@ Files in Dictionary 'Btree'
 - Btree.py
   Main implementation of the B-tree. Contains the Tree class with insertion, deletion, search, traversal, and balancing operations.
   Uses the Node and DataHandler classes.
-- visualization.oy
+- visualization.py
   - Not finished  yet (work in progres(might finish,might not(not required for B-tree to work)))
 
 
@@ -121,7 +121,7 @@ Files in Dictionary 'Btree'
 How to run programs:
 
 
-1 Clon repository using:
+1 Clone repository using:
 git clone https://github.com/theboyyeah/Python_algorithms.git
 
 
