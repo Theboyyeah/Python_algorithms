@@ -13,7 +13,7 @@ B-tree is a self-balancing tree structure used in database systems
 
 DEGREE = t
 
-reminder: funtion = method
+(reminder: funtion = method)
 
 
 Inserting keys into Btree:
